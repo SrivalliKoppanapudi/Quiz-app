@@ -189,7 +189,12 @@ btns.forEach((btn) => {
     //toggling display
     console.log(btn.innerText);
     t = btn.innerText;
-    category.classList.add("d-none");
+    
+    //check level and display data
+    //check data exists or not ...if not display error page
+    //when we click by default easy section loads
+    if (Object.keys(quizEasy).includes(t)) {
+        category.classList.add("d-none");
     quiz.classList.remove("d-none");
     quiz.innerHTML = `<div class="quiz-head">
                 <button class="back">Back</button>
@@ -393,10 +398,6 @@ btns.forEach((btn) => {
         quiz.appendChild(goHome);
       }
     });
-    //check level and display data
-    //check data exists or not ...if not display error page
-    //when we click by default easy section loads
-    if (Object.keys(quizEasy).includes(t)) {
       ques.innerText = quizEasy[t][0].q;
       Object.values(quizEasy[t][0].opt).forEach((v) => {
         var element = document.createElement("li");
