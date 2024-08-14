@@ -425,6 +425,7 @@ btns.forEach((btn) => {
       document.body.appendChild(element);
       element.click();
       document.body.removeChild(element);
+      quiz.classList.add("d-none")
     }
   });
 });
