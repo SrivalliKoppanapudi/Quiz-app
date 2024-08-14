@@ -181,7 +181,7 @@ var indexE = 1,
 window.addEventListener("load", function () {
   this.setTimeout(function () {
     preloader.style.display = "none";
-  }, 200);
+  }, 500);
 });
 var t = "";
 btns.forEach((btn) => {
@@ -198,14 +198,12 @@ btns.forEach((btn) => {
                     <option value="easy">Easy</option>
                     <option value="medium">Medium</option>
                     <option value="hard">Hard</option>
-                  </select>
-                  
+                  </select>  
             </form>
             </div>
             <h3 class="ques"></h3>
             <h2>Timer: <span id=timer></span></h2>
-            <ul class="ans-list">
-            </ul>
+            <ul class="ans-list"></ul>
             <button id="next-btn">Next</button>`;
 
     level = document.querySelector("select");
@@ -215,16 +213,19 @@ btns.forEach((btn) => {
     ansList = document.querySelector(".ans-list");
     nextBtn = document.getElementById("next-btn");
     timer = document.getElementById("timer");
+    val=level.value
+    //chnaged timers
     level.addEventListener("change", () => {
         sec=10
-        time=setInterval(()=>{
+       clearInterval(time)
+         time=setInterval(()=>{
             timer.innerText=sec;
             sec--;
             if(sec<0){
                 clearInterval(time)
                 nextBtn.click()
             }
-        },1000);
+        },1000); 
       (indexE = 1), (indexH = 1), (indexM = 1);
       score = 0;
       val = level.value;
@@ -275,14 +276,15 @@ btns.forEach((btn) => {
     });
     back.addEventListener("click", () => {
         sec=10
-        time=setInterval(()=>{
+       clearInterval(time)
+         time=setInterval(()=>{
             timer.innerText=sec;
             sec--;
             if(sec<0){
                 clearInterval(time)
                 nextBtn.click()
             }
-        },1000);
+        },1000); 
       while (ansList.firstChild) {
         ansList.firstChild.remove();
       }
@@ -292,14 +294,15 @@ btns.forEach((btn) => {
 
     nextBtn.addEventListener("click", () => {
         sec=10
-        time=setInterval(()=>{
+        clearInterval(time)
+         time=setInterval(()=>{
             timer.innerText=sec;
             sec--;
             if(sec<0){
                 clearInterval(time)
                 nextBtn.click()
             }
-        },10000);
+        },1000); 
       val = level.value;
       console.log("clicked" + val);
 
@@ -394,7 +397,6 @@ btns.forEach((btn) => {
     //check data exists or not ...if not display error page
     //when we click by default easy section loads
     if (Object.keys(quizEasy).includes(t)) {
-      // console.log(quizEasy[t][0].q)
       ques.innerText = quizEasy[t][0].q;
       Object.values(quizEasy[t][0].opt).forEach((v) => {
         var element = document.createElement("li");
@@ -406,6 +408,7 @@ btns.forEach((btn) => {
         });
       });
       sec=10
+      clearInterval(time)
     time=setInterval(()=>{
         timer.innerText=sec;
         sec--;
@@ -430,25 +433,33 @@ function evaluate(a) {
   console.log(ansList.children);
   let cq = ques.innerText.trim();
   let ca = "";
+  console.log(cq)
   if (val === "easy") {
     quizEasy[t].forEach((c) => {
+        console.log(c.q)
       if (c.q.trim() === cq) {
         ca = c.ans.trim();
       }
     });
-  } else if (val === "medium") {
+  } 
+  else if (val === "medium") {
     quizMedium[t].forEach((c) => {
+        console.log(c.q)
       if (c.q.trim() === cq) {
         ca = c.ans.trim();
       }
     });
-  } else {
+  } 
+  else {
     quizHard[t].forEach((c) => {
       if (c.q.trim() === cq) {
         ca = c.ans.trim();
       }
     });
   }
+  console.log("ca"+ca)
+  console.log("a"+a)
+  
   if (a.innerText.trim() !== ca.trim()) {
     a.style.borderColor = "red";
     a.style.background = "lightcoral";
