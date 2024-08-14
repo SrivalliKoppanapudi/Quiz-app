@@ -215,17 +215,6 @@ btns.forEach((btn) => {
     ansList = document.querySelector(".ans-list");
     nextBtn = document.getElementById("next-btn");
     timer = document.getElementById("timer");
-    sec=10
-    time=setInterval(()=>{
-        timer.innerText=sec;
-        sec--;
-        if(sec<0){
-            clearInterval(time)
-            nextBtn.click()
-        }
-    },1000);
-    val = level.value;
-
     level.addEventListener("change", () => {
         sec=10
         time=setInterval(()=>{
@@ -416,6 +405,16 @@ btns.forEach((btn) => {
           evaluate(element);
         });
       });
+      sec=10
+    time=setInterval(()=>{
+        timer.innerText=sec;
+        sec--;
+        if(sec<0){
+            clearInterval(time)
+            nextBtn.click()
+        }
+    },1000);
+    
     } else {
       let element = document.createElement("a");
       element.setAttribute("href", "./error.html");
